@@ -3,7 +3,7 @@
 require_relative '../lib/hoover'
 
 describe Hoover do
-  let(:patch) { double :patch, x_co: 3, y_co: 3, dirty: true }
+  # let(:patch) { double  :patch, x_co: 3, y_co: 3, dirty: true }
   # let(:room) {
   #   double :room,
   #   length: 5,
@@ -43,7 +43,6 @@ describe Hoover do
   end
 
   it 'leaves every space nice and clean' do
-    subject.move('N')
     expect(subject.room.floor[3][3]).not_to be_dirty
   end
 end
