@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Patch
-  attr_reader :x_co, :y_co
   attr_accessor :dirty
 
   def initialize(x_co, y_co)
