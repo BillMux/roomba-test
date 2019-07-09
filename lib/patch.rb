@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-# require_relative 'room'
-
-class Dirt
+class Patch
   attr_reader :x_co, :y_co
+  attr_accessor :dirty
 
   def initialize(x_co, y_co)
     @x_co = x_co
     @y_co = y_co
+    @dirty = false
+  end
+
+  def dirty?
+    @dirty
   end
 end
