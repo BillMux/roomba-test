@@ -1,6 +1,6 @@
 # The Roomba Test
 
-An object-oriented, test-driven exercise with the objective of designing the logic for an interface that would remotely control a Roomba-like self-driving robot.
+An object-oriented, test-driven exercise with the objective of designing the logic for an interface that would remotely control a self-driving hoover robot.
 
 ### Tech used
 - Ruby 2.5.1p57
