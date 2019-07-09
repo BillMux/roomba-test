@@ -3,12 +3,7 @@
 require_relative '../lib/hoover'
 
 describe Hoover do
-  subject {described_class.new(3, 3)}
-
-  it 'has a starting position' do
-    expect(subject.position_x).to eq 3
-    expect(subject.position_y).to eq 3
-  end
+  subject { described_class.new(3, 3, 5, 5) }
 
   context 'can move' do
     it 'to the north' do
@@ -30,5 +25,11 @@ describe Hoover do
       subject.move('W')
       expect(subject.position_x).to eq 2
     end
+  end
+
+  it 'raise error if outside floor space' do
+    expect{ described_class.new(3, 3, 1, 1) }.to raise_error(
+      'Out of range! Please try again.'
+    )
   end
 end
