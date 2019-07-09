@@ -3,6 +3,15 @@
 require_relative '../lib/hoover'
 
 describe Hoover do
+  let(:patch) { double :patch, x_co: 3, y_co: 3, dirty: true }
+  # let(:room) {
+  #   double :room,
+  #   length: 5,
+  #   depth: 5,
+  #   dirt: [3, 3],
+  #   floor: Array.new(5) { Array.new(5) }
+  # }
+  # let(:room) { Room.new(5, 5, [[3, 3]]) }
   subject { described_class.new(3, 3, 5, 5) }
 
   context 'can move' do
@@ -31,5 +40,10 @@ describe Hoover do
     expect{ described_class.new(3, 3, 1, 1) }.to raise_error(
       'Out of range! Please try again.'
     )
+  end
+
+  it 'leaves every space nice and clean' do
+    subject.move('N')
+    expect(subject.room.floor[3][3]).not_to be_dirty
   end
 end
