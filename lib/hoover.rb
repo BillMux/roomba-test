@@ -25,12 +25,16 @@ class Hoover
     when 'W'
       @position_x -= 1
     end
+    clean
   end
 
   private
 
   def clean
+    p @position_x, @position_y
+    p @room.floor[@position_x][@position_y].dirty?
     @room.floor[@position_x][@position_y].dirty = false
+    p @room.floor[@position_x][@position_y].dirty?
   end
 
   def out_of_range
