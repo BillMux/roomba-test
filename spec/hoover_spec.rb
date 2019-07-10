@@ -10,6 +10,14 @@ describe Hoover do
     subject.room.floor[3][4].dirty = true
   end
 
+  describe '#return_position_and_room' do
+    it 'returns the position of the hoover and the room dimensions' do
+      expect(subject.return_position_and_room).to eq(
+        "Position: (3, 3)\nRoom: 5x5"
+      )
+    end
+  end
+
   context 'can move' do
     it 'to the north' do
       subject.move('N')
@@ -43,8 +51,14 @@ describe Hoover do
     expect(new_hoover.room.floor[3][3]).not_to be_dirty
   end
 
-  it 'cleans each spot after moving' do
-    subject.move('N')
-    expect(subject.room.floor[3][4]).not_to be_dirty
+  describe '#move' do
+    it 'cleans each spot after moving' do
+      subject.move('N')
+      expect(subject.room.floor[3][4]).not_to be_dirty
+    end
+
+    it 'returns message detailing position of hoover' do
+      expect(subject.move('N')).to eq 'Hoover has moved to (3, 4)'
+    end
   end
 end
