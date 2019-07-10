@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'hoover'
 
 class Controller
@@ -7,7 +9,7 @@ class Controller
   def initialize(filename)
     file = File.open(filename)
     lines = file.readlines
-    lines.map! { |x| x.chomp }
+    lines.map!(&:chomp)
     @room_dimension = lines.shift
     @hoover_position = lines.shift
     @instructions = lines.pop
