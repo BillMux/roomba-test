@@ -11,4 +11,8 @@ describe Controller do
     expect(subject.dirt_positions).to eq ['1 0', '2 2', '2 3']
     expect(subject.instructions).to eq 'NNESEESWNWW'
   end
+
+  it 'creates new instance of hoover' do
+    expect(subject.hoover).to be_an_instance_of Hoover
+  end
 end
