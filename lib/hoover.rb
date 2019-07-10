@@ -5,11 +5,11 @@ require_relative 'room'
 class Hoover
   attr_reader :position_x, :position_y, :room, :position
 
-  def initialize(position_x, position_y, room_x, room_y)
+  def initialize(position_x, position_y, room_x, room_y, dirt)
     out_of_range if position_x > room_x || position_y > room_y
     @position_x = position_x
     @position_y = position_y
-    @room = Room.new(room_x, room_y)
+    @room = Room.new(room_x, room_y, dirt)
     @room_dim = "#{room_x}x#{room_y}"
     clean
   end

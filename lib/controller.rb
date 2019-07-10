@@ -24,6 +24,10 @@ class Controller
     hoover_y = @hoover_position.split[1].to_i
     room_x = @room_dimension.split[0].to_i
     room_y = @room_dimension.split[1].to_i
-    @hoover = Hoover.new(hoover_x, hoover_y, room_x, room_y)
+    dirt = []
+    @dirt_positions.each do |coord|
+      dirt << coord.split.map(&:to_i)
+    end
+    @hoover = Hoover.new(hoover_x, hoover_y, room_x, room_y, dirt)
   end
 end
