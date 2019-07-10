@@ -3,9 +3,9 @@
 require_relative '../lib/patch'
 
 describe Patch do
-  subject { described_class.new(1, 1) }
+  subject { described_class.new(1, 1, true) }
 
   it 'can be dirty' do
-    expect(subject).not_to be_dirty
+    expect(subject).to be_dirty
   end
 end
