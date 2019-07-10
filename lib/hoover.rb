@@ -11,24 +11,25 @@ class Hoover
     @position_y = position_y
     @room = Room.new(room_x, room_y)
     @room_dim = "#{room_x}x#{room_y}"
-    @position = "(#{@position_x}, #{@position_y})"
     clean
   end
 
-  def return_position_and_room
-    "Position: #{@position}\nRoom: #{@room_dim}"
+  def position_and_room_size
+    "Position: (#{@position_x}, #{@position_y})\nRoom: #{@room_dim}"
   end
 
-  def move(direction)
-    case direction
-    when 'N'
-      @position_y += 1
-    when 'E'
-      @position_x += 1
-    when 'S'
-      @position_y -= 1
-    when 'W'
-      @position_x -= 1
+  def move(instructions)
+    instructions.chars.each do |direction|
+      case direction
+      when 'N'
+        @position_y += 1
+      when 'E'
+        @position_x += 1
+      when 'S'
+        @position_y -= 1
+      when 'W'
+        @position_x -= 1
+      end
     end
     clean
     "Hoover has moved to (#{@position_x}, #{@position_y})"
