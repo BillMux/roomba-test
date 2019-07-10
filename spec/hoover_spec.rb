@@ -66,4 +66,10 @@ describe Hoover do
       expect(subject.move('N')).to eq 'Hoover has moved to (1, 3)'
     end
   end
+
+  it 'cannot exceed boundaries' do
+    expect { subject.move('WW') }.to raise_error(
+      'Out of bounds! Hoover moved back to (0, 2)'
+    )
+  end
 end

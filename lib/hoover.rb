@@ -32,10 +32,32 @@ class Hoover
       end
     end
     clean
+    check_off_grid
     "Hoover has moved to (#{@position_x}, #{@position_y})"
   end
 
   private
+
+  def check_off_grid
+    return if on_grid?
+
+    amend_position
+    position = "(#{@position_x}, #{@position_y})"
+    raise "Out of bounds! Hoover moved back to #{position}"
+  end
+
+  def amend_position
+    @position_x = @room.length - 1 if @position_x >= @room.length
+    @position_y = @room.depth - 1 if @position_y >= @room.depth
+    @position_x = 0 if @position_x.negative?
+    @position_y = 0 if @position_y.negative?
+  end
+
+  def on_grid?
+    on_x_plane = @position_x.between?(0, @room.length - 1)
+    on_y_plane = @position_y.between?(0, @room.depth - 1)
+    on_x_plane && on_y_plane
+  end
 
   def clean
     patch = @room.floor[@position_x][@position_y]
