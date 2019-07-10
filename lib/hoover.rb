@@ -19,24 +19,26 @@ class Hoover
   end
 
   def move(instructions)
-    instructions.chars.each do |direction|
-      case direction
-      when 'N'
-        @position_y += 1
-      when 'E'
-        @position_x += 1
-      when 'S'
-        @position_y -= 1
-      when 'W'
-        @position_x -= 1
-      end
-    end
+    instructions.chars.each { |direction| change_position(direction) }
     clean
     check_off_grid
     "Hoover has moved to (#{@position_x}, #{@position_y})"
   end
 
   private
+
+  def change_position(direction)
+    case direction
+    when 'N'
+      @position_y += 1
+    when 'E'
+      @position_x += 1
+    when 'S'
+      @position_y -= 1
+    when 'W'
+      @position_x -= 1
+    end
+  end
 
   def check_off_grid
     return if on_grid?
@@ -61,10 +63,10 @@ class Hoover
 
   def clean
     patch = @room.floor[@position_x][@position_y]
-    if patch.dirty?
-      patch.dirty = false
-      "Patch (#{@position_x}, #{@position_y}) has been cleaned"
-    end
+    return unless patch.dirty?
+
+    patch.dirty = false
+    "Patch (#{@position_x}, #{@position_y}) has been cleaned"
   end
 
   def out_of_range

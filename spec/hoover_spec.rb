@@ -8,7 +8,6 @@ describe Hoover do
   before(:each) do
     subject.room.floor[1][2].dirty = true
     subject.room.floor[1][3].dirty = true
-
   end
 
   describe '#return_position_and_room' do
