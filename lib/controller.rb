@@ -23,7 +23,7 @@ class Controller
   end
 
   def print_output
-    "#{@hoover.position_x}, #{@hoover.position_y}\n#{@hoover.patches_cleaned}"
+    print "#{@hoover.position_x}, #{@hoover.position_y}\n#{@hoover.patches_cleaned}\n"
   end
 
   private

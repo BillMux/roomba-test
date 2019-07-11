@@ -18,6 +18,6 @@ describe Controller do
 
   it 'return output detailing final position of hoover and clean count' do
     subject.move_hoover
-    expect(subject.print_output).to eq "1, 3\n1"
+    expect{ subject.print_output }.to output("1, 3\n1\n").to_stdout
   end
 end
