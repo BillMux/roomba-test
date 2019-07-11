@@ -13,32 +13,6 @@ describe Hoover do
     end
   end
 
-  context 'can move' do
-    it 'to the north' do
-      subject.move('N')
-      expect(subject.position_y).to eq 3
-    end
-
-    it 'to the south' do
-      subject.move('S')
-      expect(subject.position_y).to eq 1
-    end
-
-    it 'to the east' do
-      subject.move('E')
-      expect(subject.position_x).to eq 2
-    end
-
-    it 'to the west' do
-      subject.move('W')
-      expect(subject.position_x).to eq 0
-    end
-
-    it 'multiple steps at a time' do
-      expect(subject.move('NNESEESWNWW')).to eq 'Hoover has moved to (1, 3)'
-    end
-  end
-
   it 'raise error if outside floor space' do
     expect { described_class.new(3, 3, 1, 1, [[1, 2], [1, 3]]) }.to raise_error(
       'Out of range! Please try again.'
@@ -48,17 +22,6 @@ describe Hoover do
   it 'leaves initial spot clean' do
     new_hoover = described_class.new(3, 3, 5, 5, [[1, 2], [1, 3]])
     expect(new_hoover.room.floor[3][3]).not_to be_dirty
-  end
-
-  describe '#move' do
-    it 'cleans each spot after moving' do
-      subject.move('N')
-      expect(subject.room.floor[1][3]).not_to be_dirty
-    end
-
-    it 'returns message detailing position of hoover' do
-      expect(subject.move('N')).to eq 'Hoover has moved to (1, 3)'
-    end
   end
 
   it 'cannot exceed boundaries' do

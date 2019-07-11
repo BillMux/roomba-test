@@ -2,6 +2,7 @@
 
 require_relative 'patch'
 
+# The room the hoover robot has been assigned to clean
 class Room
   attr_reader :length, :depth
   attr_accessor :floor

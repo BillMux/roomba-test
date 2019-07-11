@@ -2,6 +2,7 @@
 
 require_relative 'hoover'
 
+# Accepts a text file and seperates the lines into the appropriate formats
 class Controller
   attr_reader :room_dimension, :hoover_position, :dirt_positions, :instructions
   attr_accessor :hoover
@@ -20,14 +21,14 @@ class Controller
   private
 
   def setup
-    hoover_x = @hoover_position.split[0].to_i
-    hoover_y = @hoover_position.split[1].to_i
-    room_x = @room_dimension.split[0].to_i
-    room_y = @room_dimension.split[1].to_i
+    hoover_x, hoover_y = split_map_to_i(@hoover_position)
+    room_x, room_y = split_map_to_i(@room_dimension)
     dirt = []
-    @dirt_positions.each do |coord|
-      dirt << coord.split.map(&:to_i)
-    end
+    @dirt_positions.each { |coord| dirt << split_map_to_i(coord) }
     @hoover = Hoover.new(hoover_x, hoover_y, room_x, room_y, dirt)
+  end
+
+  def split_map_to_i(input)
+    input.split.map(&:to_i)
   end
 end

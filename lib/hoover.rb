@@ -2,6 +2,7 @@
 
 require_relative 'room'
 
+# Leaves every visited square clean
 class Hoover
   attr_reader :position_x, :position_y, :room, :position
 
