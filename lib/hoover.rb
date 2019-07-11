@@ -21,7 +21,11 @@ class Hoover
   end
 
   def move(instructions)
-    instructions.chars.each { |direction| change_position(direction) }
+    instructions.chars.each do |direction|
+      change_position(direction)
+      clean
+      check_off_grid
+    end
     "Hoover has moved to (#{@position_x}, #{@position_y})"
   end
 
@@ -38,8 +42,6 @@ class Hoover
     when 'W'
       @position_x -= 1
     end
-    clean
-    check_off_grid
   end
 
   def check_off_grid
