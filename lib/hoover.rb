@@ -4,7 +4,7 @@ require_relative 'room'
 
 # Leaves every visited square clean
 class Hoover
-  attr_reader :position_x, :position_y, :room, :position
+  attr_reader :position_x, :position_y, :room, :position, :patches_cleaned
 
   def initialize(position_x, position_y, room_x, room_y, dirt)
     out_of_range if position_x > room_x || position_y > room_y
@@ -12,6 +12,7 @@ class Hoover
     @position_y = position_y
     @room = Room.new(room_x, room_y, dirt)
     @room_dim = "#{room_x}x#{room_y}"
+    @patches_cleaned = 0
     clean
   end
 
@@ -21,8 +22,6 @@ class Hoover
 
   def move(instructions)
     instructions.chars.each { |direction| change_position(direction) }
-    clean
-    check_off_grid
     "Hoover has moved to (#{@position_x}, #{@position_y})"
   end
 
@@ -39,6 +38,8 @@ class Hoover
     when 'W'
       @position_x -= 1
     end
+    clean
+    check_off_grid
   end
 
   def check_off_grid
@@ -67,6 +68,7 @@ class Hoover
     return unless patch.dirty?
 
     patch.dirty = false
+    @patches_cleaned += 1
     "Patch (#{@position_x}, #{@position_y}) has been cleaned"
   end
 

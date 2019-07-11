@@ -5,7 +5,7 @@
 class Patch
   attr_accessor :dirty
 
-  def initialize(x_co, y_co, dirty = [false, true].sample)
+  def initialize(x_co, y_co, dirty = false)
     @x_co = x_co
     @y_co = y_co
     @dirty = dirty

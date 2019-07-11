@@ -18,6 +18,14 @@ class Controller
     setup
   end
 
+  def move_hoover
+    @hoover.move(@instructions)
+  end
+
+  def print_output
+    "#{@hoover.position_x}, #{@hoover.position_y}\n#{@hoover.patches_cleaned}"
+  end
+
   private
 
   def setup
