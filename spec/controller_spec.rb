@@ -18,6 +18,12 @@ describe Controller do
 
   it 'return output detailing final position of hoover and clean count' do
     subject.move_hoover
-    expect{ subject.print_output }.to output("1, 3\n1\n").to_stdout
+    expect { subject.print_output }.to output("1, 3\n1\n").to_stdout
+  end
+
+  it 'returns the position of the hoover and the room dimensions' do
+    expect { subject.position_and_dirty_patches }.to output(
+      "Position: (1, 2)\nDirt remaining: 3\n"
+    ).to_stdout
   end
 end

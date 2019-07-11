@@ -18,25 +18,32 @@ class Controller
     setup
   end
 
-  def move_hoover
-    @hoover.move(@instructions)
+  def move_hoover(command = @instructions)
+    @hoover.move(command)
   end
 
   def print_output
-    print "#{@hoover.position_x}, #{@hoover.position_y}\n#{@hoover.patches_cleaned}\n"
+    position = "#{@hoover.position_x}, #{@hoover.position_y}"
+    print "#{position}\n#{@hoover.patches_cleaned}\n"
+  end
+
+  def position_and_dirty_patches
+    position = "(#{@hoover.position_x}, #{@hoover.position_y})"
+    dirt_remaining = @dirt_positions.length - @hoover.patches_cleaned
+    print "Position: #{position}\nDirt remaining: #{dirt_remaining}\n"
   end
 
   private
 
   def setup
-    hoover_x, hoover_y = split_map_to_i(@hoover_position)
-    room_x, room_y = split_map_to_i(@room_dimension)
+    hoover_x, hoover_y = split_to_i(@hoover_position)
+    room_x, room_y = split_to_i(@room_dimension)
     dirt = []
-    @dirt_positions.each { |coord| dirt << split_map_to_i(coord) }
+    @dirt_positions.each { |coord| dirt << split_to_i(coord) }
     @hoover = Hoover.new(hoover_x, hoover_y, room_x, room_y, dirt)
   end
 
-  def split_map_to_i(input)
+  def split_to_i(input)
     input.split.map(&:to_i)
   end
 end

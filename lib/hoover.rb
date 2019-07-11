@@ -16,10 +16,6 @@ class Hoover
     clean
   end
 
-  def position_and_room_size
-    "Position: (#{@position_x}, #{@position_y})\nRoom: #{@room_dim}"
-  end
-
   def move(instructions)
     instructions.chars.each do |direction|
       change_position(direction)
